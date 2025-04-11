@@ -43815,6 +43815,46 @@
     "url": "syosetu.org",
     "lang": "ja"
   },
+  "hanime1": {
+    "routes": {
+      "/previews/:date": {
+        "path": "/previews/:date",
+        "name": "新番预告",
+        "maintainers": [
+          "kjasn"
+        ],
+        "example": "/hanime1/previews/202504",
+        "categories": [
+          "anime"
+        ],
+        "parameters": {
+          "date": {
+            "description": "Date in YYYYMM format"
+          }
+        },
+        "features": {
+          "requireConfig": false,
+          "requirePuppeteer": false,
+          "antiCrawler": false,
+          "supportBT": false,
+          "supportPodcast": false,
+          "supportScihub": false
+        },
+        "radar": [
+          {
+            "source": [
+              "hanime1.me/previews/:date"
+            ],
+            "target": "/previews/:date"
+          }
+        ],
+        "location": "previews.ts"
+      }
+    },
+    "name": "Hanime1",
+    "url": "hanime1.me",
+    "description": "NSFW WARNING!!! It contains adult content. Hanime1 provides adult anime"
+  },
   "harvard": {
     "routes": {
       "/health/blog": {
@@ -78144,35 +78184,6 @@
           "Rein-Ou"
         ],
         "location": "now.ts"
-      },
-      "/warning/:location": {
-        "path": "/warning/:location",
-        "categories": [
-          "forecast"
-        ],
-        "example": "/qweather/warning/广州",
-        "parameters": {
-          "location": "N"
-        },
-        "features": {
-          "requireConfig": [
-            {
-              "name": "HEFENG_KEY",
-              "description": ""
-            }
-          ],
-          "requirePuppeteer": false,
-          "antiCrawler": false,
-          "supportBT": false,
-          "supportPodcast": false,
-          "supportScihub": false
-        },
-        "name": "天气灾害预警",
-        "maintainers": [
-          "KINAXNG"
-        ],
-        "description": "需自行注册获取 api 的 key，每小时更新一次数据",
-        "location": "warning.ts"
       }
     },
     "name": "和风天气",
@@ -104106,6 +104117,64 @@
         ],
         "description": "栏目类型\n\n| 招生动态 | 通知公告 | 政策法规 | 招生统计 | 历年复试线 | 博士招生 | 硕士招生 | 推免生 | 其他招生 |\n| -------- | -------- | -------- | -------- | ---------- | -------- | -------- | ------ | -------- |\n| zsdt     | tzgg     | zcfg     | zstj     | lnfsx      | bszs     | sszs     | tms    | qtzs     |",
         "location": "yz.ts"
+      },
+      "/zs/:category{.+}?": {
+        "path": "/zs/:category{.+}?",
+        "name": "本科招生网",
+        "url": "zs.xjtu.edu.cn",
+        "maintainers": [
+          "nczitzk"
+        ],
+        "example": "/xjtu/zs/zsxx1/zskx",
+        "parameters": {
+          "category": {
+            "description": "分类，默认为 zsxx1/zskx，可在对应分类页 URL 中找到",
+            "options": [
+              {
+                "label": "招生快讯",
+                "value": "zsxx1/zskx"
+              },
+              {
+                "label": "招生政策",
+                "value": "zsxx1/zszc"
+              },
+              {
+                "label": "招生计划",
+                "value": "zsxx1/zsjh"
+              },
+              {
+                "label": "阳光公告",
+                "value": "zsxx1/yggg"
+              },
+              {
+                "label": "历年录取",
+                "value": "zsxx1/lnlq"
+              }
+            ]
+          }
+        },
+        "description": ":::tip\n若订阅 [招生快讯](https://zs.xjtu.edu.cn/zsxx1/zskx.htm)，网址为 `https://zs.xjtu.edu.cn/zsxx1/zskx.htm`，请截取 `https://zs.xjtu.edu.cn/` 到末尾 `.htm` 的部分 `zsxx1/zskx` 作为 `category` 参数填入，此时目标路由为 [`/xjtu/zs/zsxx1/zskx`](https://rsshub.app/xjtu/zs/zsxx1/zskx)。\n:::\n\n| [招生快讯](https://zs.xjtu.edu.cn/zsxx1/zskx.htm)   | [招生政策](https://zs.xjtu.edu.cn/zsxx1/zszc.htm)   | [招生计划](https://zs.xjtu.edu.cn/zsxx1/zsjh.htm)   | [阳光公告](https://zs.xjtu.edu.cn/zsxx1/yggg.htm)   | [历年录取](https://zs.xjtu.edu.cn/zsxx1/lnlq.htm)   |\n| --------------------------------------------------- | --------------------------------------------------- | --------------------------------------------------- | --------------------------------------------------- | --------------------------------------------------- |\n| [zsxx1/zskx](https://rsshub.app/xjtu/zs/zsxx1/zskx) | [zsxx1/zszc](https://rsshub.app/xjtu/zs/zsxx1/zszc) | [zsxx1/zsjh](https://rsshub.app/xjtu/zs/zsxx1/zsjh) | [zsxx1/yggg](https://rsshub.app/xjtu/zs/zsxx1/yggg) | [zsxx1/lnlq](https://rsshub.app/xjtu/zs/zsxx1/lnlq) |\n",
+        "categories": [
+          "university"
+        ],
+        "features": {
+          "requireConfig": false,
+          "requirePuppeteer": false,
+          "antiCrawler": false,
+          "supportRadar": true,
+          "supportBT": false,
+          "supportPodcast": false,
+          "supportScihub": false
+        },
+        "radar": [
+          {
+            "source": [
+              "zs.xjtu.edu.cn/:category"
+            ]
+          }
+        ],
+        "view": 0,
+        "location": "zs.ts"
       },
       "/2yuan/news/:id?": {
         "path": "/2yuan/news/:id?",
